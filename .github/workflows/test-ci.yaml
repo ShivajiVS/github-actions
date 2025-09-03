@@ -13,5 +13,9 @@ jobs:
         - name: view project structure
           run: tree
 
+        - name: view node version
+          run: echo node --version
+
+
 
 
