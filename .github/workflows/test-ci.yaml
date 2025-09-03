@@ -1,0 +1,13 @@
+name: Basic CI/CD Pipeline
+
+on: [push]
+
+
+jobs: 
+  basic test:
+    - name: checkout to code
+      uses: actions/checkout@v4
+    
+    - name: view project structure
+      run: tree
+    
