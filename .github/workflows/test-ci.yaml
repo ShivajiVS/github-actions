@@ -3,19 +3,34 @@ name: Basic CI/CD Pipeline
 on: [push]
 
 jobs:
-    test: 
-      name: test the code
-      runs-on: ubuntu-latest
-      steps:
-        - name: checkout to code
-          uses: actions/checkout@v5
+  test:
+    name: test the code
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout to code
+        uses: actions/checkout@v5
 
-        - name: view project structure
-          run: tree
+      - name: view project structure
+        run: tree
 
-        - name: view node version
-          run: node --version
+      - name: view node version
+        run: node --version
 
+      - name: test the code
+        run: echo "test are successfull.."
 
+  build:
+    name: test the code
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout to code
+        uses: actions/checkout@v5
 
+      - name: view project structure
+        run: tree
 
+      - name: buildind the project
+        run: echo "build the project.."
+
+      - name: building completed
+        run: echo "completed.."
