@@ -2,12 +2,14 @@ name: Basic CI/CD Pipeline
 
 on: [push]
 
-
-jobs: 
+jobs:
   basic test:
-    - name: checkout to code
-      uses: actions/checkout@v4
-    
-    - name: view project structure
-      run: tree
-    
+    name: test the project
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout to code
+        uses: actions/checkout@v5
+
+      - name: view project structure
+        run: tree
