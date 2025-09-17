@@ -5,10 +5,21 @@
   text-align: center;
 }
 
-h1 {
-  width: 600px;
-  height: 150px;
+#section {
+  width: 800px;
+  margin: 60px;
   border: 2px solid blanchedalmond;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+}
+p {
+  text-align: justify;
+  text-transform: capitalize;
+  font-size: medium;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  padding-left: 30px;
+  padding-right: 30px;
+  font-weight: 500;
+  line-height: 30px;
 }

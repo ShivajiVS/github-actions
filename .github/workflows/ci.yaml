@@ -1,13 +1,17 @@
 name: CI Pipeline
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v5
 
       - name: Setup Node.js
@@ -15,39 +19,20 @@ jobs:
         with:
           node-version: 24.8.0
 
-      - name: view node version
-        run: node -v
+      - name: Setup Pnpm
+        uses: pnpm/action-setup@v5
+        with:
+          version: 10
 
-      # - name: Setup pnpm
-      #   uses: pnpm/action-setup@v4
-      #   with:
-      #     version: 10
-
-      - name: install pnpm
-        run: npm install -g pnpm
-
-      - name: view pnpm version
-        run: pnpm -v
-
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build application
+      - name: Build Application
         run: pnpm run build
 
-      - name: show files
-        # run: tree
-        run: find . -name "dist" -o -name "build" -o -name "out"
-
-      - name: view dist folder
+      - name: Verify Build Output
         run: |
-          cd dist
-          ls
-          cat index.html
-
-      - name: Verify build output
-        run: |
-          echo "Build completed. Checking output directory..."
+          echo "Build completed. Checking Dist directory..."
           if [ -d "dist" ]; then
             echo "✅ dist directory exists"
             du -sh dist
@@ -57,7 +42,7 @@ jobs:
             exit 1
           fi
 
-      - name: Install Vercel CLI globally
+      - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
       - name: Deploy to Production
