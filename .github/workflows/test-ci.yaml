@@ -21,6 +21,8 @@ jobs:
 
   build:
     name: test the code
+    needs:
+      - test
     runs-on: ubuntu-latest
     steps:
       - name: checkout to code
@@ -34,3 +36,6 @@ jobs:
 
       - name: building completed
         run: echo "completed.."
+
+
+
