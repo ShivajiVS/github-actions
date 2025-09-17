@@ -44,3 +44,15 @@ jobs:
           cd dist
           ls
           cat index.html
+
+      - name: Verify build output
+        run: |
+          echo "Build completed. Checking output directory..."
+          if [ -d ".dist" ]; then
+            echo "✅ .dist directory exists"
+            du -sh dist
+          else
+            echo "❌ .dist directory not found!"
+            ls -la
+            exit 1
+          fi
