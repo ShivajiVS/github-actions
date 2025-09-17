@@ -37,3 +37,6 @@ jobs:
 
       - name: show files
         run: tree
+
+      - name: view dist folder
+        run: cd dist && ls
