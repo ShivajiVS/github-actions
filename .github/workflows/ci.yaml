@@ -46,35 +46,26 @@ jobs:
           cat index.html
 
       - name: Verify build output
-        # run: |
-        #   echo "Build completed. Checking output directory..."
-        #   if [ -d "dist" ]; then
-        #     echo "✅ dist directory exists"
-        #     du -sh dist
-        #   else
-        #     echo "dist directory not found!"
-        #     ls -la
-        #     exit 1
-        #   fi
-
         run: |
-          echo "Build completed. Checking for output directories..."
-          FOUND_DIR=""
-          # Check for each possible directory
+          echo "Build completed. Checking output directory..."
           if [ -d "dist" ]; then
-              echo "✅ dist directory exists"
-              FOUND_DIR="dist"
-          elif [ -d "build" ]; then
-              echo "✅ build directory exists"
-              FOUND_DIR="build"
-          elif [ -d "out" ]; then
-              echo "✅ out directory exists"
-              FOUND_DIR="out"
+            echo "✅ dist directory exists"
+            du -sh dist
           else
-              echo "❌ No output directory found! (Checked: dist, build, out)"
-              echo "Current directory contents:"
-              ls -la
-              exit 1
+            echo "dist directory not found!"
+            ls -la
+            exit 1
           fi
-          echo "📦 Size of the $FOUND_DIR directory:"
-          du -sh "$FOUND_DIR"
+
+      - name: Install Vercel CLI globally
+        run: pnpm install -g vercel@latest
+
+      - name: Deploy to Production
+        run: |
+          echo "🚀 Deploying to Production..."
+          npx vercel dist --token $VERCEL_TOKEN --prod --confirm
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
