@@ -15,13 +15,16 @@ jobs:
         with:
           node-version: 24.8.0
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
       - name: view node version
         run: node -v
+
+      # - name: Setup pnpm
+      #   uses: pnpm/action-setup@v4
+      #   with:
+      #     version: 10
+
+      - name: install pnpm
+        run: npm install -g pnpm
 
       - name: view pnpm version
         run: pnpm -v
