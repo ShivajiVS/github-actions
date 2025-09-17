@@ -58,7 +58,7 @@ jobs:
           fi
 
       - name: Install Vercel CLI globally
-        run: pnpm install -g vercel@latest
+        run: npm install -g vercel@latest
 
       - name: Deploy to Production
         run: |
