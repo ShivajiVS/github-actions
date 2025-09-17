@@ -46,13 +46,35 @@ jobs:
           cat index.html
 
       - name: Verify build output
+        # run: |
+        #   echo "Build completed. Checking output directory..."
+        #   if [ -d "dist" ]; then
+        #     echo "✅ dist directory exists"
+        #     du -sh dist
+        #   else
+        #     echo "dist directory not found!"
+        #     ls -la
+        #     exit 1
+        #   fi
+
         run: |
-          echo "Build completed. Checking output directory..."
+          echo "Build completed. Checking for output directories..."
+          FOUND_DIR=""
+          # Check for each possible directory
           if [ -d "dist" ]; then
-            echo "✅ dist directory exists"
-            du -sh dist
+              echo "✅ dist directory exists"
+              FOUND_DIR="dist"
+          elif [ -d "build" ]; then
+              echo "✅ build directory exists"
+              FOUND_DIR="build"
+          elif [ -d "out" ]; then
+              echo "✅ out directory exists"
+              FOUND_DIR="out"
           else
-            echo "❌ dist directory not found!"
-            ls -la
-            exit 1
+              echo "❌ No output directory found! (Checked: dist, build, out)"
+              echo "Current directory contents:"
+              ls -la
+              exit 1
           fi
+          echo "📦 Size of the $FOUND_DIR directory:"
+          du -sh "$FOUND_DIR"
