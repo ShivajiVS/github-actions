@@ -63,7 +63,7 @@ jobs:
       - name: Deploy to Production
         run: |
           echo "🚀 Deploying to Production..."
-          npx vercel deploy dist --token $VERCEL_TOKEN --prod --yes --force
+          npx vercel --token $VERCEL_TOKEN --prod --yes
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
