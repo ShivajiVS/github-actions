@@ -36,7 +36,8 @@ jobs:
         run: pnpm run build
 
       - name: show files
-        run: tree
+        # run: tree
+        run: find . -name "dist" -o -name "build" -o -name "out"
 
       - name: view dist folder
         run: |
