@@ -39,4 +39,7 @@ jobs:
         run: tree
 
       - name: view dist folder
-        run: cd dist && ls
+        run: |
+          cd dist
+          ls
+          cat index.html
