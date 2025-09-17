@@ -20,6 +20,12 @@ jobs:
         with:
           version: 10
 
+      - name: view node version
+        run: node -v
+
+      - name: view pnpm version
+        run: pnpm -v
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
